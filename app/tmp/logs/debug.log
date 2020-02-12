@@ -1,0 +1,2 @@
+2020-02-12 02:33:09 Notice: Notice (8): Undefined variable: json in [/var/www/html/app/controllers/api_controller.php, line 20]
+2020-02-12 02:33:32 Notice: Notice (8): Undefined variable: json in [/var/www/html/app/controllers/api_controller.php, line 20]
