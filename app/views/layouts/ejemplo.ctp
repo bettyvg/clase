@@ -11,29 +11,50 @@
 <body>
 
 <div id= "div1" class="container">
-  <input type="button" onclick = "get_categories('div1')">
+  <select id="sel1">
+  <option> Selecciona Alguno</option>
+  </select>
 </div>
 
 <div id= "div2" class="container">
-  <input type="button" onclick = "get_categories('div2')">
+<select id="sel2">
+  <option> Selecciona Alguno</option>
+  </select>
 </div>
 
 
 <script>
-   
-        var url = "http://localhost/";
 
-    function get_categories(parametro) {
-           $.ajax({
-        url     : url+"api/bi_categories_getall",
+$(document).ready(function(){
+    $('#sel1').change(function(){
+
+        var valor = $(this).children("option:selected").val();
+        //obtener el valor
+        var endpoint = "http://localhost/api/bi_description_get_id/"+valor;
+        
+        $.ajax({
+        url     : endpoint,
+        type    : "get",
+        success : (function (data) {
+        
+                $('#sel2').html("<option value='"+data.BusinessDescription.id+"'>"+data.BusinessDescription.name+"</option>");
+    
+        })
+    });
+});
+    var endpoint = "http://localhost/api/bi_categories_getall";
+    $.ajax({
+        url     : endpoint,
         type    : "get",
         success : (function (data) {
             $.each( data, function( key, value) {
-                $("#"+parametro+"").append(""+value.BusinessCategories.name);
+                console.log(value);
+                $('#sel1').append("<option value='"+value.BusinessCategories.id+"'>"+value.BusinessCategories.name+"</option>");
             });
         })
+        
     });
-}
+});
 </script>
 </body>
 </html>
