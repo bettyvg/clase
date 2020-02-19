@@ -27,7 +27,6 @@
 
 $(document).ready(function(){
     $('#sel1').change(function(){
-
         var valor = $(this).children("option:selected").val();
         //obtener el valor
         var endpoint = "http://localhost/api/bi_description_get_id/"+valor;
@@ -36,9 +35,7 @@ $(document).ready(function(){
         url     : endpoint,
         type    : "get",
         success : (function (data) {
-        
                 $('#sel2').html("<option value='"+data.BusinessDescription.id+"'>"+data.BusinessDescription.name+"</option>");
-    
         })
     });
 });
