@@ -11,39 +11,29 @@
 <body>
 
 <div id= "div1" class="container">
-  <h1>My First Bootstrap Page</h1>
-  <p>This is some text.</p>
+  <input type="button" onclick = "get_categories('div1')">
 </div>
+
 <div id= "div2" class="container">
-  <h1>My First Bootstrap Page</h1>
-  <p>This is some text.</p>
+  <input type="button" onclick = "get_categories('div2')">
 </div>
+
+
 <script>
-    $(document).ready(function(){
+   
         var url = "http://localhost/";
 
-        get_categories();
-        
-        function get_categories() {
+    function get_categories(parametro) {
            $.ajax({
         url     : url+"api/bi_categories_getall",
         type    : "get",
         success : (function (data) {
             $.each( data, function( key, value) {
-                //$("#div1").append("<p>"+value.BusinessCategories.name+"</p>");
-                if(value.BusinessCategories.name == 'Restaurante')
-                {
-                    $("#div1 h1").append("<h1>"+value.BusinessCategories.name+"</h1>");
-                }else if(value.BusinessCategories.name == 'Gym'){
-                $("#div2 h1").append("<h1>"+value.BusinessCategories.name+"</h1>");
-                }
+                $("#"+parametro+"").append(""+value.BusinessCategories.name);
             });
-        }),
-    }); 
-        }
-        
-});
-
+        })
+    });
+}
 </script>
 </body>
 </html>
