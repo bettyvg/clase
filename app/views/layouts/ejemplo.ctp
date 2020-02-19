@@ -47,9 +47,9 @@ $(document).ready(function(){
         url     : endpoint,
         type    : "get",
         success : (function (data) {
-            $.each( data, function( key, value) {
-                console.log(value);
-                $('#sel1').append("<option value='"+value.BusinessCategories.id+"'>"+value.BusinessCategories.name+"</option>");
+            $.each( data, function( key, datito) {
+                //console.log(value);
+                $('#sel1').append("<option value='"+datito.BusinessCategories.id+"'>"+datito.BusinessCategories.name+"</option>");
             });
         })
         
